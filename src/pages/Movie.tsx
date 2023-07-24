@@ -7,6 +7,7 @@ import { getQuery } from "../utils";
 const Movie = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const page = getQuery("page");
    useEffect(() => {
       (async () => {
@@ -19,6 +20,7 @@ const Movie = () => {
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
       document.title = "Wajik Streaming | Movie";
@@ -29,7 +31,7 @@ const Movie = () => {
          <Navbar />
          <Content>
             <Header route="🎥 Movie" message="terbaru" />
-            <Card data={data} isLoading={isLoading} />
+            <Card data={data} isLoading={isLoading} error={error} />
          </Content>
          <Footer />
       </Wrapper>

@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const Genre = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const page = getQuery("page");
    const { slug } = useParams();
    useEffect(() => {
@@ -23,6 +24,7 @@ const Genre = () => {
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
       document.title = `Wajik Streaming | Genre: ${
@@ -43,7 +45,7 @@ const Genre = () => {
                   slug?.slice(1).replace("-", " ")
                }
             />
-            <Card data={data} isLoading={isLoading} />
+            <Card data={data} isLoading={isLoading} error={error} />
          </Content>
          <Footer />
       </Wrapper>

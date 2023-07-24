@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const GenreList = () => {
    const [data, setData] = useState<GenreListInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    useEffect(() => {
       (async () => {
          setIsLoading(true);
@@ -18,6 +19,7 @@ const GenreList = () => {
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
       document.title = "Wajik Streaming | Genre";
@@ -30,9 +32,8 @@ const GenreList = () => {
             <Header route="📑 Genre" />
             {isLoading ? (
                <Loader />
-            ) : (
-               data &&
-               (data.statusCode === 200 ? (
+            ) : data ? (
+               data.statusCode === 200 ? (
                   <div className="grid gap-4 grid-cols-6 mxl:grid-cols-4 mlg:grid-cols-3 msm:grid-cols-2 mxsm:grid-cols-1">
                      {data?.list.map((item, index) => (
                         <Link
@@ -48,7 +49,11 @@ const GenreList = () => {
                   <h1 className="text-center text-2xl py-4">
                      {data.error} {data.statusCode} {data.message}
                   </h1>
-               ))
+               )
+            ) : (
+               error && (
+                  <h1 className="text-center text-2xl py-4">{error.message}</h1>
+               )
             )}
          </Content>
          <Footer />

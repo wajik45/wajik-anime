@@ -7,6 +7,7 @@ import { getQuery } from "../utils";
 const Complete = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const page = getQuery("page");
    useEffect(() => {
       (async () => {
@@ -19,8 +20,9 @@ const Complete = () => {
             ).then((res) => res.json());
             setData(data);
             setIsLoading(false);
-         } catch (error) {
+         } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
       document.title = "Wajik Streaming | Complete";
@@ -30,7 +32,7 @@ const Complete = () => {
          <Navbar />
          <Content>
             <Header route="✔ Complete" message="terbaru" />
-            <Card data={data} isLoading={isLoading} />
+            <Card data={data} isLoading={isLoading} error={error} />
          </Content>
          <Footer />
       </Wrapper>

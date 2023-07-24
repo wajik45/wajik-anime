@@ -7,6 +7,7 @@ import { getQuery } from "../utils";
 const Home = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const page = getQuery("page");
 
    useEffect(() => {
@@ -20,6 +21,7 @@ const Home = () => {
             setIsLoading(false);
          } catch (err: any) {
             setIsLoading(false);
+            setError(err);
          }
       })();
       document.title = "Wajik Streaming";
@@ -30,7 +32,7 @@ const Home = () => {
          <Navbar />
          <Content>
             <Header route="🏠 Home" message="terbaru" />
-            <Card data={data} isLoading={isLoading} />
+            <Card data={data} isLoading={isLoading} error={error} />
          </Content>
          <Footer />
       </Wrapper>

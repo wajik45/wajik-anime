@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 const StreamingAnime = () => {
    const [data, setData] = useState<StreamingInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const [videoLink, setVideoLink] = useState<string>("");
    const { slug, episode } = useParams();
    const selectServer = useRef<HTMLSelectElement>(null);
@@ -35,6 +36,7 @@ const StreamingAnime = () => {
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
    }, [episode]);
@@ -66,9 +68,8 @@ const StreamingAnime = () => {
             />
             {isLoading ? (
                <Loader />
-            ) : (
-               data &&
-               (data.statusCode === 200 ? (
+            ) : data ? (
+               data.statusCode === 200 ? (
                   <div>
                      <div className="py-4 flex justify-end gap-4">
                         <SelectServer
@@ -86,7 +87,11 @@ const StreamingAnime = () => {
                   <h1 className="text-center text-2xl py-4">
                      {data.error} {data.statusCode} {data.message}
                   </h1>
-               ))
+               )
+            ) : (
+               error && (
+                  <h1 className="text-center text-2xl py-4">{error.message}</h1>
+               )
             )}
          </Content>
          <Footer />

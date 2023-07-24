@@ -8,6 +8,7 @@ import poster404 from "../assets/poster-404/poster-404.jpg";
 const AnimeDetails = () => {
    const [data, setData] = useState<AnimeDetailsInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<any>(null);
    const { slug } = useParams();
    useEffect(() => {
       (async () => {
@@ -23,6 +24,7 @@ const AnimeDetails = () => {
             setIsLoading(false);
          } catch (err) {
             setIsLoading(false);
+            setError(err);
          }
       })();
    }, []);
@@ -42,9 +44,8 @@ const AnimeDetails = () => {
             <Header route="🎦 Anime" message={data?.title ? data.title : ""} />
             {isLoading ? (
                <Loader />
-            ) : (
-               data &&
-               (data.statusCode === 200 ? (
+            ) : data ? (
+               data.statusCode === 200 ? (
                   <div>
                      <Header
                         route="Anime"
@@ -126,7 +127,11 @@ const AnimeDetails = () => {
                   <h1 className="text-center text-2xl py-4">
                      {data.error} {data.statusCode} {data.message}
                   </h1>
-               ))
+               )
+            ) : (
+               error && (
+                  <h1 className="text-center text-2xl py-4">{error.message}</h1>
+               )
             )}
          </Content>
          <Footer />
