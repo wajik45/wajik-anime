@@ -13,7 +13,7 @@ const Navbar = () => {
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (search === "") return;
-      navigate(`/search/${search}`);
+      location.href = `/search/${search}`;
    };
    const handleClick = () => {
       if (search === "") return;
