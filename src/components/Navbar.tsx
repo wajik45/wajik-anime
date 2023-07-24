@@ -6,18 +6,20 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
    const [search, setSearch] = useState<string>("");
    const navigate = useNavigate();
+
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
-   const handleSubmit = () => {
-      if (search === "") return;
-      return navigate(`/search/${search}`);
-   };
-   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (search === "") return;
-      return navigate(`/search/${search}`);
+      navigate(`/search/${search}`);
    };
+   const handleClick = () => {
+      if (search === "") return;
+      navigate(`/search/${search}`);
+   };
+
    return (
       <div id="navbar" className="bg-zinc-900">
          <Container>
@@ -29,7 +31,7 @@ const Navbar = () => {
                      </Link>
                   </div>
                   <form
-                     onSubmit={() => handleSubmit()}
+                     onSubmit={(e) => handleSubmit(e)}
                      className="relative flex items-center py-4"
                   >
                      <input
@@ -38,13 +40,12 @@ const Navbar = () => {
                         placeholder="Cari anime..."
                         className="px-3 py-2 rounded-md ring-1 ring-zinc-200 focus:ring-2 mmd:w-full"
                      />
-                     <button
-                        onClick={(e) => handleClick(e)}
+                     <div
+                        onClick={() => handleClick()}
                         className="absolute right-0 mx-1 text-xl"
-                        type="submit"
                      >
                         🔍
-                     </button>
+                     </div>
                   </form>
                </div>
                <div>
