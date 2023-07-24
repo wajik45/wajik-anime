@@ -1,22 +1,21 @@
 import * as React from "react";
 import { useState } from "react";
 import { Container } from "../layouts";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
    const [search, setSearch] = useState<string>("");
-   const navigate = useNavigate();
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
    const handleSubmit = () => {
       if (search === "") return;
-      navigate(`/search/${search}`);
+      location.href = `/search/${search}`;
    };
    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       if (search === "") return;
-      navigate(`/search/${search}`);
+      location.href = `/search/${search}`;
    };
    return (
       <div id="navbar" className="bg-zinc-900">

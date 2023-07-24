@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar, Footer, Header, Card } from "../components";
 import { Wrapper, Content } from "../layouts";
 import { MainDataInterface } from "../interfaces";
@@ -9,7 +9,6 @@ const Search = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<any>(null);
-   const contentRef = useRef<HTMLDivElement>(null);
    const { keyword } = useParams();
    const page = getQuery("page");
 
@@ -24,11 +23,6 @@ const Search = () => {
             ).then((res) => res.json());
             setData(data);
             setIsLoading(false);
-            scrollTo({
-               top: contentRef.current?.offsetTop,
-               left: 0,
-               behavior: "smooth",
-            });
          } catch (err) {
             setIsLoading(false);
             setError(err);
@@ -40,7 +34,7 @@ const Search = () => {
    return (
       <Wrapper>
          <Navbar />
-         <Content contentRef={contentRef}>
+         <Content>
             <Header route="🔎 Search" message={keyword} />
             <Card
                data={data}
