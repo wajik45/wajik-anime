@@ -29,6 +29,7 @@ const Search = () => {
          }
       })();
       document.title = `Wajik Streaming | Search: ${keyword}`;
+      document.querySelector("form")?.reset();
    }, [page, keyword]);
 
    return (
