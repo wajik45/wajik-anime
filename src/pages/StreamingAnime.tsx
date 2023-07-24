@@ -34,6 +34,10 @@ const StreamingAnime = () => {
                data ? data.title : ""
             } | Episode ${data ? episode : ""}`;
             setIsLoading(false);
+            scrollTo({
+               top: 0,
+               behavior: "instant",
+            });
          } catch (err) {
             setIsLoading(false);
             setError(err);

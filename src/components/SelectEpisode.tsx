@@ -19,7 +19,7 @@ const SelectEpisode = (props: ComponentProps) => {
          id="select-episode"
          className="p-2 inline-block rounded-md bg-zinc-900 ring-2 ring-sky-800"
       >
-         <option value="">Pilih Episode</option>
+         <option value="">Episode</option>
          {episodes.map((item, index) => (
             <option key={index} value={`/anime/${slug}/${item}`}>
                Episode {item}
