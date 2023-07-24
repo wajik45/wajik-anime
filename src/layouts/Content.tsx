@@ -3,12 +3,16 @@ import { Container } from ".";
 
 type ComponentProps = {
    children: React.ReactNode;
+   contentRef?: any;
 };
 
-const Content = ({ children }: ComponentProps) => {
+const Content = (props: ComponentProps) => {
+   const { children, contentRef } = props;
    return (
       <Container>
-         <div className="bg-zinc-800 p-4 rounded-md">{children}</div>
+         <div className="bg-zinc-800 p-4 rounded-md" ref={contentRef}>
+            {children}
+         </div>
       </Container>
    );
 };
