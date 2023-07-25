@@ -10,9 +10,10 @@ const Navbar = () => {
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
-   const handleEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
-      if (e.key === "Enter") {
-         document.getElementById("search")?.click();
+   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (search !== "") {
+         return (location.href = `/search/${search}`);
       }
    };
    const handleClick = () => {
@@ -27,13 +28,12 @@ const Navbar = () => {
             <nav>
                <div className="flex justify-between items-center flex-wrap mmd:block">
                   <div className="brand py-4">
-                     <Link to="/" className="font-bold text-2xl">
+                     <a href="/" className="font-bold text-2xl">
                         Wajik Streaming
-                     </Link>
+                     </a>
                   </div>
                   <form
-                     onKeyUp={(e) => handleEnter(e)}
-                     onSubmit={(e) => e.preventDefault()}
+                     onSubmit={(e) => handleSubmit(e)}
                      className="relative flex items-center py-4"
                   >
                      <input
@@ -43,9 +43,7 @@ const Navbar = () => {
                         className="px-3 py-2 rounded-md ring-1 ring-zinc-200 focus:ring-2 mmd:w-full"
                      />
                      <button
-                        type="submit"
                         onClick={() => handleClick()}
-                        id="search"
                         className="absolute right-0 mx-1 text-xl"
                      >
                         🔍
