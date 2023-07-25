@@ -10,17 +10,9 @@ const Navbar = () => {
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
-   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-   //    e.preventDefault();
-   //    if (search !== "") {
-   //       return (location.href = `/search/${search}`);
-   //    }
-   // };
    const handleEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
-      if (e.code === "Enter") {
-         if (search !== "") {
-            return navigate(`/search/${search}`);
-         }
+      if (e.key === "Enter") {
+         document.getElementById("search")?.click();
       }
    };
    const handleClick = () => {
@@ -50,12 +42,14 @@ const Navbar = () => {
                         placeholder="Cari anime..."
                         className="px-3 py-2 rounded-md ring-1 ring-zinc-200 focus:ring-2 mmd:w-full"
                      />
-                     <div
+                     <button
+                        type="submit"
                         onClick={() => handleClick()}
-                        className="absolute right-0 mx-1 text-xl cursor-pointer"
+                        id="search"
+                        className="absolute right-0 mx-1 text-xl"
                      >
                         🔍
-                     </div>
+                     </button>
                   </form>
                </div>
                <div>
