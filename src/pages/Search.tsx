@@ -17,9 +17,9 @@ const Search = () => {
          setIsLoading(true);
          try {
             const data = await fetch(
-               `${import.meta.env.VITE_BASE_URL}/search/${keyword}?page=${
-                  page ? page : 1
-               }`
+               `${
+                  import.meta.env.VITE_BASE_URL
+               }/search/?query=${keyword}&page=${page ? page : 1}`
             ).then((res) => res.json());
             setData(data);
             setIsLoading(false);

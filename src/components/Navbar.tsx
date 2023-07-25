@@ -10,14 +10,23 @@ const Navbar = () => {
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
-   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (search === "") return;
-      location.href = `/search/${search}`;
+   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+   //    e.preventDefault();
+   //    if (search !== "") {
+   //       return (location.href = `/search/${search}`);
+   //    }
+   // };
+   const handleEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
+      if (e.code === "Enter") {
+         if (search !== "") {
+            return navigate(`/search/${search}`);
+         }
+      }
    };
    const handleClick = () => {
-      if (search === "") return;
-      navigate(`/search/${search}`);
+      if (search !== "") {
+         return navigate(`/search/${search}`);
+      }
    };
 
    return (
@@ -31,7 +40,8 @@ const Navbar = () => {
                      </Link>
                   </div>
                   <form
-                     onSubmit={(e) => handleSubmit(e)}
+                     onKeyUp={(e) => handleEnter(e)}
+                     onSubmit={(e) => e.preventDefault()}
                      className="relative flex items-center py-4"
                   >
                      <input
@@ -42,7 +52,7 @@ const Navbar = () => {
                      />
                      <div
                         onClick={() => handleClick()}
-                        className="absolute right-0 mx-1 text-xl"
+                        className="absolute right-0 mx-1 text-xl cursor-pointer"
                      >
                         🔍
                      </div>
