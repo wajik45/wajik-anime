@@ -42,12 +42,12 @@ const Navbar = () => {
                         placeholder="Cari anime..."
                         className="px-3 py-2 rounded-md ring-1 ring-zinc-200 focus:ring-2 mmd:w-full"
                      />
-                     <button
+                     <div
                         onClick={() => handleClick()}
-                        className="absolute right-0 mx-1 text-xl"
+                        className="absolute right-0 mx-1 text-xl cursor-pointer"
                      >
                         🔍
-                     </button>
+                     </div>
                   </form>
                </div>
                <div>
