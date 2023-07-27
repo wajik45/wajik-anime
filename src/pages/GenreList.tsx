@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const GenreList = () => {
    const [data, setData] = useState<GenreListInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [clickCount, setClickCount] = useState<number>(0);
    const [error, setError] = useState<any>(null);
    useEffect(() => {
       (async () => {
@@ -23,11 +24,11 @@ const GenreList = () => {
          }
       })();
       document.title = "Wajik Streaming | Genre";
-   }, []);
+   }, [clickCount]);
 
    return (
       <Wrapper>
-         <Navbar />
+         <Navbar setClickCount={setClickCount} />
          <Content>
             <Header route="📑 Genre" />
             {isLoading ? (

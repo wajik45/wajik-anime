@@ -7,6 +7,7 @@ import { getQuery } from "../utils";
 const Home = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [clickCount, setClickCount] = useState<number>(0);
    const [error, setError] = useState<any>(null);
    const page = getQuery("page");
 
@@ -25,11 +26,11 @@ const Home = () => {
          }
       })();
       document.title = "Wajik Streaming";
-   }, [page]);
+   }, [page, clickCount]);
 
    return (
       <Wrapper>
-         <Navbar />
+         <Navbar setClickCount={setClickCount} />
          <Content>
             <Header route="🏠 Home" message="terbaru" />
             <Card data={data} isLoading={isLoading} error={error} />

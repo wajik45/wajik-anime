@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Container } from "../layouts";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setClickCount }: { setClickCount?: any }) => {
    const [search, setSearch] = useState<string>("");
    const navigate = useNavigate();
 
@@ -16,10 +16,13 @@ const Navbar = () => {
          return (location.href = `/search/${search}`);
       }
    };
-   const handleClick = () => {
+   const handleClickSearch = () => {
       if (search !== "") {
          return navigate(`/search/${search}`);
       }
+   };
+   const handleClickCount = () => {
+      setClickCount((prev: number) => prev + 1);
    };
 
    return (
@@ -43,7 +46,7 @@ const Navbar = () => {
                         className="px-3 py-2 rounded-md ring-1 ring-zinc-200 focus:ring-2 mmd:w-full"
                      />
                      <div
-                        onClick={() => handleClick()}
+                        onClick={() => handleClickSearch()}
                         className="absolute right-0 mx-1 text-xl cursor-pointer"
                      >
                         🔍
@@ -53,32 +56,56 @@ const Navbar = () => {
                <div>
                   <ul className="grid grid-cols-8 gap-4 mlg:grid-cols-6 mmd:grid-cols-4 mssm:grid-cols-2 mxsm:grid-cols-1 py-4">
                      <li>
-                        <Link to="/" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/"
+                           className="navbar-list"
+                        >
                            Home
                         </Link>
                      </li>
                      <li>
-                        <Link to="/ongoing" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/ongoing"
+                           className="navbar-list"
+                        >
                            Ongoing
                         </Link>
                      </li>
                      <li>
-                        <Link to="/complete" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/complete"
+                           className="navbar-list"
+                        >
                            Complete
                         </Link>
                      </li>
                      <li>
-                        <Link to="/anime" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/anime"
+                           className="navbar-list"
+                        >
                            Anime
                         </Link>
                      </li>
                      <li>
-                        <Link to="/movie" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/movie"
+                           className="navbar-list"
+                        >
                            Movie
                         </Link>
                      </li>
                      <li>
-                        <Link to="/genre" className="navbar-list">
+                        <Link
+                           onClick={() => handleClickCount()}
+                           to="/genre"
+                           className="navbar-list"
+                        >
                            Genre
                         </Link>
                      </li>

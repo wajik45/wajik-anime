@@ -7,6 +7,7 @@ import { getQuery } from "../utils";
 const Anime = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [clickCount, setClickCount] = useState<number>(0);
    const [error, setError] = useState<any>(null);
    const page = getQuery("page");
    useEffect(() => {
@@ -24,11 +25,11 @@ const Anime = () => {
          }
       })();
       document.title = "Wajik Streaming | Anime";
-   }, [page]);
+   }, [page, clickCount]);
 
    return (
       <Wrapper>
-         <Navbar />
+         <Navbar setClickCount={setClickCount} />
          <Content>
             <Header route="🎦 Anime" message="terbaru" />
             <Card data={data} isLoading={isLoading} error={error} />
