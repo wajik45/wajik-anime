@@ -31,7 +31,7 @@ const Card = (props: ComponentProps) => {
    ) : data ? (
       data.statusCode === 200 ? (
          <>
-            <div className="grid gap-4 grid-cols-6 mxl:grid-cols-4 mlg:grid-cols-3 msm:grid-cols-2 mxsm:grid-cols-1">
+            <div className="grid gap-4 grid-cols-6 m2xl:grid-cols-4 mlg:grid-cols-3 msm:grid-cols-2 mxsm:grid-cols-1">
                {data.list.map((item, index) => (
                   <div
                      key={index}
