@@ -1,4 +1,4 @@
-import { Container } from "../layouts";
+import Container from "../layouts/Container";
 
 const Footer = () => {
    return (

@@ -2,24 +2,24 @@ import { Link } from "react-router-dom";
 import { MainDataInterface } from "../interfaces";
 import { getPathName } from "../utils";
 
-type ComponentProps = {
-   data: MainDataInterface;
-};
-
-const Pagination = ({ data }: ComponentProps) => {
+const Pagination = ({ data }: { data: MainDataInterface }) => {
    const firstPagination = (data: MainDataInterface) => {
       if (data.currentPage === 1) return data.currentPage;
       return data.currentPage - 1;
    };
+
    const secondPagination = (data: MainDataInterface) => {
       if (data.currentPage === 1) return data.currentPage + 1;
       return data.currentPage;
    };
+
    const thirdPagination = (data: MainDataInterface) => {
       if (data.currentPage === 1) return data.currentPage + 2;
       return data.currentPage + 1;
    };
+
    const pathName = getPathName();
+
    return (
       <div
          className={`py-6 flex justify-center gap-3 flex-wrap ${

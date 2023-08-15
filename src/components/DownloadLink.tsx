@@ -1,11 +1,7 @@
 import { Header } from ".";
 import { StreamingInterface } from "../interfaces";
 
-type ComponentProps = {
-   data: StreamingInterface;
-};
-
-const DownloadLink = ({ data }: ComponentProps) => {
+const DownloadLink = ({ data }: { data: StreamingInterface }) => {
    return (
       <>
          <Header
@@ -18,7 +14,7 @@ const DownloadLink = ({ data }: ComponentProps) => {
                <a
                   key={index}
                   href={item.url}
-                  className="ring-2 ring-teal-500 hover:ring-teal-700 hover:text-zinc-400 transition py-3 px-4 rounded-full font-semibold inline-block w-full text-center"
+                  className="download-list"
                   target="_blank"
                >
                   {item.server} {item.quality}

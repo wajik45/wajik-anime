@@ -7,6 +7,7 @@ type ComponentProps = {
 
 const Header = (props: ComponentProps) => {
    const { route, message, secondMessage, className } = props;
+
    return (
       <div>
          <h1 className={`py-6 text-xl msm:text-lg ${className}`}>

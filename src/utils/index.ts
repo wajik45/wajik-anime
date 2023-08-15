@@ -1,4 +1,5 @@
-import { getQuery } from "./get-query";
-import { getPathName } from "./get-path-name";
+import getPathName from "./getPathName";
+import getQuery from "./getQuery";
+import online from "./online";
 
-export { getQuery, getPathName };
+export { getQuery, getPathName, online };

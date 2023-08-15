@@ -11,6 +11,7 @@ const SelectServer = (props: ComponentProps) => {
    const handleChange = (target: EventTarget & HTMLSelectElement) => {
       setVideoLink(target.value);
    };
+
    return (
       <select
          ref={selectServer}

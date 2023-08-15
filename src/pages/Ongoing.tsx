@@ -1,42 +1,69 @@
+import MainLayout from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
-import { Navbar, Footer, Header, Card } from "../components";
-import { Wrapper, Content } from "../layouts";
+import { Header, Card } from "../components";
 import { MainDataInterface } from "../interfaces";
-import { getQuery } from "../utils";
+import { getQuery, online } from "../utils";
 
 const Ongoing = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
-   const [clickCount, setClickCount] = useState<number>(0);
    const [error, setError] = useState<any>(null);
+   const [refresh, setRefresh] = useState<number>(0);
+
    const page = getQuery("page");
+
+   const BASEURL = import.meta.env.VITE_BASE_URL;
+   const URL = `${BASEURL}/ongoing?page=${page || 1}`;
+
+   const matchCache = async () => {
+      return await caches.match(URL);
+   };
+
+   const putCache = async () => {
+      const response = await fetch(URL);
+      const cache = await caches.open("pages");
+      await cache.put(URL, response);
+   };
+
+   const getData = async () => {
+      const response = await matchCache();
+      return await response?.json();
+   };
+
    useEffect(() => {
+      document.title = "Wajik Streaming | Ongoing";
+      online(setRefresh, setError);
       setIsLoading(true);
+
       (async () => {
          try {
-            const data = await fetch(
-               `${import.meta.env.VITE_BASE_URL}/ongoing?page=${
-                  page ? page : 1
-               }`
-            ).then((res) => res.json());
-            setData(data);
+            let result;
+
+            if (await matchCache()) {
+               result = await getData();
+
+               setIsLoading(false);
+               return setData(result);
+            }
+
+            await putCache();
+
+            result = await getData();
+
             setIsLoading(false);
+            setData(result);
          } catch (err) {
             setIsLoading(false);
             setError(err);
          }
       })();
-      document.title = "Wajik Streaming | Ongoing";
-   }, [page, clickCount]);
+   }, [page, refresh]);
+
    return (
-      <Wrapper>
-         <Navbar setClickCount={setClickCount} />
-         <Content>
-            <Header route="🏃‍♂️💨 Ongoing" message="terbaru" />
-            <Card data={data} isLoading={isLoading} error={error} />
-         </Content>
-         <Footer />
-      </Wrapper>
+      <MainLayout>
+         <Header route="🏃‍♂️💨 Ongoing" message="terbaru" />
+         <Card data={data} isLoading={isLoading} error={error} />
+      </MainLayout>
    );
 };
 

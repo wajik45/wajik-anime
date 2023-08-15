@@ -25,6 +25,7 @@
       border-radius: 5px;
    }
 
+   /* TAILWIND */
    .navbar-list {
       @apply w-full text-center py-2 px-4 ring-2 ring-emerald-600 rounded-md inline-block hover:ring-2 hover:text-zinc-300 hover:ring-zinc-300 transition;
    }
@@ -33,6 +34,30 @@
    }
    .streaming-description {
       @apply ring-1 text-[.9rem] ring-zinc-300 hover:ring-zinc-400 transition py-1 px-3 hover:text-zinc-400 rounded-full;
+   }
+   .download-list {
+      @apply ring-2 ring-teal-500 hover:ring-teal-700 hover:text-zinc-400 transition py-3 px-4 rounded-full font-semibold inline-block w-full text-center;
+   }
+   .genre-list {
+      @apply block ring-2 ring-zinc-300 px-3 py-[2px] hover:ring-emerald-500 hover:text-zinc-400 transition rounded-full;
+   }
+   .card {
+      @apply aspect-[9/16] flex justify-center relative bg-gradient-to-t from-zinc-700 to-zinc-900 rounded-md mb-4 overflow-hidden;
+   }
+   .card-image {
+      @apply w-[94%] h-[80%] absolute rounded-md cursor-pointer group-hover:brightness-50 transition;
+   }
+   .card-play-icon {
+      @apply absolute text-2xl hidden cursor-pointer hover:block group-hover:block;
+   }
+   .card-link {
+      @apply text-ellipsis font-semibold mssm:text-[.9rem] mxsm:text-base hover:text-zinc-400 transition;
+   }
+   .card-star {
+      @apply absolute top-0 left-0 bg-sky-700 bg-opacity-90 text-zinc-200 p-1 rounded-md;
+   }
+   .card-type {
+      @apply absolute top-0 right-0 bg-yellow-700 bg-opacity-90 text-zinc-200 p-1 rounded-md;
    }
 
    .loader {

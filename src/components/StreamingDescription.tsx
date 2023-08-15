@@ -3,11 +3,7 @@ import { Header } from ".";
 import { StreamingInterface } from "../interfaces";
 import poster404 from "../assets/poster-404/poster-404.jpg";
 
-type ComponentProps = {
-   data: StreamingInterface;
-};
-
-const StreamingDescription = ({ data }: ComponentProps) => {
+const StreamingDescription = ({ data }: { data: StreamingInterface }) => {
    return (
       <>
          <Header

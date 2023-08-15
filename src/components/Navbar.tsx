@@ -1,28 +1,27 @@
 import * as React from "react";
 import { useState } from "react";
-import { Container } from "../layouts";
+import Container from "../layouts/Container";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = ({ setClickCount }: { setClickCount?: any }) => {
+const Navbar = () => {
    const [search, setSearch] = useState<string>("");
    const navigate = useNavigate();
 
    const handleChange = (target: EventTarget & HTMLInputElement) => {
       setSearch(target.value);
    };
+
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (search !== "") {
-         return (location.href = `/search/${search}`);
+         location.href = `/search/${search}`;
       }
    };
+
    const handleClickSearch = () => {
       if (search !== "") {
-         return navigate(`/search/${search}`);
+         navigate(`/search/${search}`);
       }
-   };
-   const handleClickCount = () => {
-      setClickCount((prev: number) => prev + 1);
    };
 
    return (
@@ -56,56 +55,32 @@ const Navbar = ({ setClickCount }: { setClickCount?: any }) => {
                <div>
                   <ul className="grid grid-cols-8 gap-4 mlg:grid-cols-6 mmd:grid-cols-4 mssm:grid-cols-2 mxsm:grid-cols-1 py-4">
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/"
-                           className="navbar-list"
-                        >
+                        <Link to="/" className="navbar-list">
                            Home
                         </Link>
                      </li>
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/ongoing"
-                           className="navbar-list"
-                        >
+                        <Link to="/ongoing" className="navbar-list">
                            Ongoing
                         </Link>
                      </li>
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/complete"
-                           className="navbar-list"
-                        >
+                        <Link to="/complete" className="navbar-list">
                            Complete
                         </Link>
                      </li>
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/anime"
-                           className="navbar-list"
-                        >
+                        <Link to="/anime" className="navbar-list">
                            Anime
                         </Link>
                      </li>
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/movie"
-                           className="navbar-list"
-                        >
+                        <Link to="/movie" className="navbar-list">
                            Movie
                         </Link>
                      </li>
                      <li>
-                        <Link
-                           onClick={() => handleClickCount()}
-                           to="/genre"
-                           className="navbar-list"
-                        >
+                        <Link to="/genre" className="navbar-list">
                            Genre
                         </Link>
                      </li>

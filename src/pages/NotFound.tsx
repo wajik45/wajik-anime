@@ -5,6 +5,7 @@ const NotFound = () => {
    useEffect(() => {
       document.title = "Wajik Streaming | Not found";
    }, []);
+
    return (
       <div className="h-screen flex justify-center items-center">
          <img src={page404} alt="Not found" className="w-full h-full" />
