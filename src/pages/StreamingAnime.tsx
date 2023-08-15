@@ -45,12 +45,15 @@ const StreamingAnime = () => {
       (data && episode) || ""
    }`;
 
+   data &&
+      scrollTo({
+         top: 0,
+         left: 0,
+         behavior: "smooth",
+      });
+
    useEffect(() => {
       (async () => {
-         scrollTo({
-            top: 0,
-            behavior: "instant",
-         });
          online(setRefresh, setError);
          setIsLoading(true);
 

@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Header, Card } from "../components";
 import { MainDataInterface } from "../interfaces";
 import { getQuery, online } from "../utils";
@@ -11,6 +11,7 @@ const Genre = () => {
    const [error, setError] = useState<any>(null);
    const [refresh, setRefresh] = useState<number>(0);
 
+   const top = useRef<HTMLSpanElement>(null);
    const page = getQuery("page");
    const { slug } = useParams();
 
@@ -34,11 +35,18 @@ const Genre = () => {
 
    useEffect(() => {
       (async () => {
+         scrollTo({
+            top: top.current?.offsetTop,
+            left: 0,
+            behavior: "smooth",
+         });
+
          document.title = `Wajik Streaming | Genre : ${
             slug
                ? slug.charAt(0).toUpperCase() + slug.slice(1).replace("-", " ")
                : ""
          }`;
+
          online(setRefresh, setError);
          setIsLoading(true);
 
@@ -67,6 +75,7 @@ const Genre = () => {
 
    return (
       <MainLayout>
+         <span ref={top}></span>
          <Header
             route="📑 Genre"
             message={

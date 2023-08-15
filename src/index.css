@@ -39,7 +39,7 @@
       @apply ring-2 ring-teal-500 hover:ring-teal-700 hover:text-zinc-400 transition py-3 px-4 rounded-full font-semibold inline-block w-full text-center;
    }
    .genre-list {
-      @apply block ring-2 ring-zinc-300 px-3 py-[2px] hover:ring-emerald-500 hover:text-zinc-400 transition rounded-full;
+      @apply block ring-2 ring-zinc-300 text-center px-3 py-[2px] hover:ring-emerald-500 hover:text-zinc-400 transition rounded-full;
    }
    .card {
       @apply aspect-[9/16] flex justify-center relative bg-gradient-to-t from-zinc-700 to-zinc-900 rounded-md mb-4 overflow-hidden;

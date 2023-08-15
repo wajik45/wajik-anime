@@ -41,6 +41,13 @@ const StreamingMovie = () => {
 
    document.title = `Wajik Streaming | Movie : ${data?.title || ""}`;
 
+   data &&
+      scrollTo({
+         top: 0,
+         left: 0,
+         behavior: "smooth",
+      });
+
    useEffect(() => {
       (async () => {
          online(setRefresh, setError);

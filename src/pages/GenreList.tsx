@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Header, Loader } from "../components";
 import { GenreListInterface } from "../interfaces";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const GenreList = () => {
    const [error, setError] = useState<any>(null);
    const [refresh, setRefresh] = useState<number>(0);
 
+   const top = useRef<HTMLSpanElement>(null);
    const BASEURL = import.meta.env.VITE_BASE_URL;
    const URL = `${BASEURL}/genre`;
 
@@ -31,6 +32,12 @@ const GenreList = () => {
 
    useEffect(() => {
       (async () => {
+         scrollTo({
+            top: top.current?.offsetTop,
+            left: 0,
+            behavior: "smooth",
+         });
+
          document.title = "Wajik Streaming | Genre";
          online(setRefresh, setError);
          setIsLoading(true);
@@ -60,6 +67,7 @@ const GenreList = () => {
 
    return (
       <MainLayout>
+         <span ref={top}></span>
          <Header route="📑 Genre" />
          {isLoading ? (
             <Loader />

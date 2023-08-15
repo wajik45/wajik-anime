@@ -34,6 +34,13 @@ const AnimeDetails = () => {
 
    document.title = `Wajik Streaming | Anime : ${data?.title || ""}`;
 
+   data &&
+      scrollTo({
+         top: 0,
+         left: 0,
+         behavior: "smooth",
+      });
+
    useEffect(() => {
       (async () => {
          online(setRefresh, setError);
