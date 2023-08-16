@@ -84,6 +84,9 @@ const StreamingAnime = () => {
       if (selectServer.current) {
          selectServer.current.selectedIndex = 0;
       }
+      if (data && data.statusCode === 200) {
+         setVideoLink(data.videoPlayer[0].url);
+      }
    }, [data]);
 
    const episodes: number[] = [];
