@@ -83,7 +83,9 @@ const StreamingAnime = () => {
          selectServer.current.selectedIndex = 0;
       }
       if (data && data.statusCode === 200) {
-         setVideoLink(data.videoPlayer[0].url);
+         if (data.videoPlayer[0]) {
+            setVideoLink(data.videoPlayer[0].url);
+         }
       }
    }, [data]);
 
