@@ -20,9 +20,7 @@ const StreamingMovie = () => {
    const [videoLink, setVideoLink] = useState<string>("");
 
    const { slug } = useParams();
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/movie/${slug}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/movie/${slug}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

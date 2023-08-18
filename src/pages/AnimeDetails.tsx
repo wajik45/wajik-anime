@@ -13,9 +13,7 @@ const AnimeDetails = () => {
    const [refresh, setRefresh] = useState<number>(0);
 
    const { slug } = useParams();
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/anime/${slug}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/anime/${slug}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

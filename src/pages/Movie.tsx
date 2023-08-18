@@ -12,9 +12,7 @@ const Movie = () => {
 
    const top = useRef<HTMLSpanElement>(null);
    const page = getQuery("page");
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/movie?page=${page || 1}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/movie?page=${page || 1}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

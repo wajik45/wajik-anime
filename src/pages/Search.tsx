@@ -14,9 +14,9 @@ const Search = () => {
    const top = useRef<HTMLSpanElement>(null);
    const { keyword } = useParams();
    const page = getQuery("page");
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/search/?query=${keyword}&page=${page || 1}`;
+   const URL = `${
+      import.meta.env.VITE_BASE_URL
+   }/search/?query=${keyword}&page=${page || 1}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

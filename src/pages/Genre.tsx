@@ -14,9 +14,9 @@ const Genre = () => {
    const top = useRef<HTMLSpanElement>(null);
    const page = getQuery("page");
    const { slug } = useParams();
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/genre/${slug}?page=${page || 1}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/genre/${slug}?page=${
+      page || 1
+   }`;
 
    const matchCache = async () => {
       return await caches.match(URL);

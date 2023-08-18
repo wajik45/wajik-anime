@@ -22,9 +22,7 @@ const StreamingAnime = () => {
 
    const { slug, episode } = useParams();
    const selectServer = useRef<HTMLSelectElement>(null);
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/anime/${slug}/${episode}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/anime/${slug}/${episode}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

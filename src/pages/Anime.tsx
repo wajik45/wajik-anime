@@ -12,9 +12,7 @@ const Anime = () => {
 
    const top = useRef<HTMLSpanElement>(null);
    const page = getQuery("page");
-
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/anime?page=${page || 1}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/anime?page=${page || 1}`;
 
    const matchCache = async () => {
       return await caches.match(URL);

@@ -12,8 +12,7 @@ const GenreList = () => {
    const [refresh, setRefresh] = useState<number>(0);
 
    const top = useRef<HTMLSpanElement>(null);
-   const BASEURL = import.meta.env.VITE_BASE_URL;
-   const URL = `${BASEURL}/genre`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/genre`;
 
    const matchCache = async () => {
       return await caches.match(URL);
