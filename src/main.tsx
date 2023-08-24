@@ -42,13 +42,7 @@ const router = createBrowserRouter([
    },
    {
       path: "/genre/:slug",
-      _element: <Genre />,
-      get element() {
-         return this._element;
-      },
-      set element(value) {
-         this._element = value;
-      },
+      element: <Genre />,
    },
    {
       path: "/search/:keyword",
