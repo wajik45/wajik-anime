@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       element: <Ongoing />,
    },
    {
-      path: "/complete",
+      path: "/completed",
       element: <Completed />,
    },
    {

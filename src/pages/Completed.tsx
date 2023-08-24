@@ -37,7 +37,7 @@ const Completed = () => {
             behavior: "smooth",
          });
 
-         document.title = "Wajik Streaming | Complete";
+         document.title = "Wajik Streaming | Completed";
          online(setRefresh, setError);
          setIsLoading(true);
 
