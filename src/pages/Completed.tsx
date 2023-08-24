@@ -4,7 +4,7 @@ import { Header, Card } from "../components";
 import { MainDataInterface } from "../interfaces";
 import { getQuery, online } from "../utils";
 
-const Complete = () => {
+const Completed = () => {
    const [data, setData] = useState<MainDataInterface | null>(null);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<any>(null);
@@ -12,7 +12,7 @@ const Complete = () => {
 
    const top = useRef<HTMLSpanElement>(null);
    const page = getQuery("page");
-   const URL = `${import.meta.env.VITE_BASE_URL}/complete?page=${page || 1}`;
+   const URL = `${import.meta.env.VITE_BASE_URL}/completed?page=${page || 1}`;
 
    const matchCache = async () => {
       return await caches.match(URL);
@@ -67,10 +67,10 @@ const Complete = () => {
    return (
       <MainLayout>
          <span ref={top}></span>
-         <Header route="✔ Complete" message="terbaru" />
+         <Header route="✔ Completed" message="terbaru" />
          <Card data={data} isLoading={isLoading} error={error} />
       </MainLayout>
    );
 };
 
-export default Complete;
+export default Completed;

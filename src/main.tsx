@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-   Home,
-   Anime,
-   Movie,
-   Complete,
-   Ongoing,
-   Genre,
-   GenreList,
-   Search,
-   AnimeDetails,
-   StreamingAnime,
-   StreamingMovie,
-   NotFound,
-} from "./pages";
+import Anime from "../src/pages/Anime";
+import Movie from "../src/pages/Movie";
+import Completed from "../src/pages/Completed";
+import Genre from "../src/pages/Genre";
+import Home from "../src/pages/Home";
+import Ongoing from "../src/pages/Ongoing";
+import GenreList from "../src/pages/GenreList";
+import Search from "../src/pages/Search";
+import AnimeDetails from "../src/pages/AnimeDetails";
+import StreamingAnime from "../src/pages/StreamingAnime";
+import StreamingMovie from "../src/pages/StreamingMovie";
+import NotFound from "../src/pages/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
@@ -36,7 +34,7 @@ const router = createBrowserRouter([
    },
    {
       path: "/complete",
-      element: <Complete />,
+      element: <Completed />,
    },
    {
       path: "/genre",
@@ -44,7 +42,13 @@ const router = createBrowserRouter([
    },
    {
       path: "/genre/:slug",
-      element: <Genre />,
+      _element: <Genre />,
+      get element() {
+         return this._element;
+      },
+      set element(value) {
+         this._element = value;
+      },
    },
    {
       path: "/search/:keyword",
