@@ -18,21 +18,6 @@ const Genre = () => {
       page || 1
    }`;
 
-   const matchCache = async () => {
-      return await caches.match(URL);
-   };
-
-   const putCache = async () => {
-      const response = await fetch(URL);
-      const cache = await caches.open("pages");
-      await cache.put(URL, response);
-   };
-
-   const getData = async () => {
-      const response = await matchCache();
-      return await response?.json();
-   };
-
    useEffect(() => {
       (async () => {
          scrollTo({
@@ -51,18 +36,8 @@ const Genre = () => {
          setIsLoading(true);
 
          try {
-            let result;
-
-            if (await matchCache()) {
-               result = await getData();
-
-               setIsLoading(false);
-               return setData(result);
-            }
-
-            await putCache();
-
-            result = await getData();
+            const response = await fetch(URL);
+            const result = await response.json();
 
             setIsLoading(false);
             setData(result);
